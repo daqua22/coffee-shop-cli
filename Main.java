@@ -33,9 +33,34 @@ public class Main {
 
         System.out.print("Option: ");
         int drinkChoice = input.nextInt();
+        double checkTotal = 0.0;
 
-        System.out.println("Thank you, " + name + "!");
-        System.out.println("You selected option #" + drinkChoice + ".");
+        if (drinkChoice == 1) {
+            System.out.println("You ordered a Latte!");
+            checkTotal = lattePrice;
+        } else if (drinkChoice == 2) {
+            System.out.println("You ordered a Cappuccino!");
+            checkTotal = cappuccinoPrice;
+        } else if (drinkChoice == 3) {
+            System.out.println("You ordered an Espresso!"); 
+            checkTotal = espressoPrice;
+        } else {
+            System.out.println("Select an option between 1 and 3.");
+        
+        }
+        
+        if (drinkChoice >= 1 && drinkChoice <= 3) {
+            System.out.print("How many drinks would you like: ");
+            
+            int drinkQuantity = input.nextInt();
+         
+            checkTotal *= drinkQuantity ;
+            
+            System.out.printf("Your total is: $%.2f%n", checkTotal);
+        }
+
+        //System.out.println("Thank you, " + name + "!");
+        //System.out.println("You selected option #" + drinkChoice + ".");
 
         input.close();
     }
