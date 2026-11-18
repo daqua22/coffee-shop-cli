@@ -14,6 +14,8 @@ public class Main {
         String espresso = "Espresso";
         double espressoPrice = 3.00;
 
+        int drinkChoice = -1;
+
          Scanner input = new Scanner(System.in);
 
         System.out.print("Enter your name: ");
@@ -29,35 +31,48 @@ public class Main {
         System.out.printf("1. %s - $%.2f%n", latte, lattePrice);
         System.out.printf("2. %s - $%.2f%n",cappuccino, cappuccinoPrice);
         System.out.printf("3. %s - $%.2f%n", espresso, espressoPrice);
+        System.out.println("0. Checkout");
 
-
-        System.out.print("Option: ");
-        int drinkChoice = input.nextInt();
         double checkTotal = 0.0;
+        double drinkPrice = 0.0;
 
-        if (drinkChoice == 1) {
-            System.out.println("You ordered a Latte!");
-            checkTotal = lattePrice;
-        } else if (drinkChoice == 2) {
-            System.out.println("You ordered a Cappuccino!");
-            checkTotal = cappuccinoPrice;
-        } else if (drinkChoice == 3) {
-            System.out.println("You ordered an Espresso!"); 
-            checkTotal = espressoPrice;
-        } else {
-            System.out.println("Select an option between 1 and 3.");
-        
-        }
-        
-        if (drinkChoice >= 1 && drinkChoice <= 3) {
-            System.out.print("How many drinks would you like: ");
+        while (drinkChoice != 0){
+            System.out.print("Option: ");
+            drinkChoice = input.nextInt();
+
+                if (drinkChoice == 1) {
+                System.out.println("You ordered a Latte!");
+                drinkPrice = lattePrice;
+            } else if (drinkChoice == 2) {
+                System.out.println("You ordered a Cappuccino!");
+                drinkPrice = cappuccinoPrice;
+            } else if (drinkChoice == 3) {
+                System.out.println("You ordered an Espresso!"); 
+                drinkPrice = espressoPrice;
+                
+            } else if (drinkChoice < 0 || drinkChoice > 3) {
+                System.out.println("Select an option between 1 and 3.");
             
-            int drinkQuantity = input.nextInt();
-         
-            checkTotal *= drinkQuantity ;
+            }
             
-            System.out.printf("Your total is: $%.2f%n", checkTotal);
+            if (drinkChoice >= 1 && drinkChoice <= 3) {
+                System.out.print("How many drinks would you like: ");
+                
+                int drinkQuantity = input.nextInt();
+            
+                drinkPrice *= drinkQuantity;
+
+                checkTotal += drinkPrice;
+                
+                System.out.printf("Your current total: $%.2f%n", checkTotal);
+            }
+
         }
+
+        System.out.printf("Your grand total is: $%.2f%n", checkTotal);
+        System.out.println("Thank you for your order " + name + "!");
+
+        
 
         //System.out.println("Thank you, " + name + "!");
         //System.out.println("You selected option #" + drinkChoice + ".");
